@@ -15,7 +15,11 @@ import { TodoService } from './todo.service';
     AppComponent, ListComponent,EditComponent,AddComponent
   ],
   imports: [
-    BrowserModule,FormsModule
+    BrowserModule,FormsModule,RouterModule.forRoot([
+      {path:'',redirectTo:'list',pathMatch:'full'},
+      {path:'list', component: ListComponent },
+      {path:'edit/:id', component: EditComponent },
+      {path:'add', component: AddComponent }
     ])
   ],
   providers: [TodoService],

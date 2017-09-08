@@ -9,6 +9,11 @@ export class TodoService{
   getTodos(): Promise<Todo[]>{
     return Promise.resolve(Todos);
   }
-
-
+  getTodo(id: number): Promise<Todo>{
+    return this.getTodos()
+    .then(todo => todo.find(todo=> todo.id===id));
+  }
+  addTodo(value:Todo){
+    this.todos.push(value);
+  }
 }
