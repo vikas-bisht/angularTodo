@@ -26,19 +26,19 @@ import { Todos } from './mock-todo';
 
   `
 })
-export class EditComponent implements OnInit{
+export class EditComponent implements OnInit {
 
   @Input() todo: Todo;
   constructor(
-  private todoservice: TodoService,
-  private route: ActivatedRoute,
-  private location: Location
-) {}
+    private todoservice: TodoService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.route.paramMap
-      .switchMap((params: ParamMap)=>this.todoservice.getTodo(+params.get('id')))
-      .subscribe(todo=> this.todo =todo);
+      .switchMap((params: ParamMap) => this.todoservice.getTodo(+params.get('id')))
+      .subscribe(todo => this.todo = todo);
   }
   goBack(): void {
     this.location.back();

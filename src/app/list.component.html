@@ -1,9 +1,9 @@
 <h1>TodoList</h1>
 <p></p>
 <ul>
-  <li *ngFor= "let todo of todos">
-  <span class="badge"> {{todo.id}} </span> &nbsp; {{ todo.name }}
-  <button (click)="edit(todo)">Edit</button>
+  <li *ngFor="let todo of todos">
+    <span class="badge"> {{todo.id}} </span> &nbsp; {{ todo.name }}
+    <button (click)="edit(todo)">Edit</button>
   </li>
 </ul>
 <button (click)="add()">add</button>
