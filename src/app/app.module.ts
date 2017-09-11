@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { ListComponent } from './list.component';
@@ -23,7 +24,7 @@ import { StatsComponent } from './stats/stats.component';
       {path:'add', component: AddComponent }
     ])
   ],
-  providers: [TodoService],
+  providers: [TodoService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

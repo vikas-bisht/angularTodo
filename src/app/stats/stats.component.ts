@@ -10,8 +10,8 @@ import { Todo } from './../todo';
 })
 
 export class StatsComponent implements OnInit, OnChanges{
-  @Input('init') todos: Todo[]=[];
-  stats: Stats;
+  @Input() todos: Todo[]=[];
+  stats={} ;
   ngOnInit(){
     this.updateStats(this.todos);
   }
@@ -20,18 +20,17 @@ export class StatsComponent implements OnInit, OnChanges{
     this.updateStats(changes.todos.currentValue);
   }
   updateStats(todos){
-    let done = _.reduce(todos, (completed, todo: Todo)=>{
+    let  done = 0;
+    let left = 0;
+    _.forEach(todos,(todo:Todo,key)=>{
       if(todo.complete){
-        completed++;
+        done++;
       }
-      return completed;
-    },0);
-    let todo = _.reduce(todos, (left,todo: Todo)=>{
-      if(!todo.complete){
+      else{
         left++;
       }
-      return left;
-    },0)
-      this.stats= new Stats(todo,done);
+    })
+    this.stats['done']=done;
+    this.stats['todo']=left;
     }
 }
