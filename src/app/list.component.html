@@ -1,8 +1,10 @@
+<stats *ngIf="todos" [todos]="todos"></stats>
 <h1>TodoList</h1>
 <p></p>
 <ul>
   <li *ngFor="let todo of todos">
-    <span class="badge"> {{todo.id}} </span> &nbsp; {{ todo.name }}
+    <input type="checkbox" (ngModelChange)="markTodo($event,todo)"  [(ngModel)]="todo.selected" />
+     {{ todo.name }}
     <button (click)="edit(todo)">Edit</button>
   </li>
 </ul>

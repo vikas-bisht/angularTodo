@@ -1,14 +1,10 @@
 import { Todo } from './todo';
 
 export const Todos : Todo[]=[
-  { id: 1, name: 'sleep' },
-  { id: 2, name: 'rest' },
-  { id: 3, name: 'work' },
-  { id: 4, name: 'workout' },
-  { id: 5, name: 'jogg' },
-  { id: 6, name: 'swim' },
-  { id: 7, name: 'fsdfsd' },
-  { id: 8, name: 'dfsdfsdfs' },
-  { id: 9, name: 'fdfsdf' },
-  { id: 10, name: 'fdfsdasdf' }
+  { id: 1, name: 'sleep', active:false, complete:false },
+  { id: 2, name: 'rest',  active:false, complete:false },
+  { id: 3, name: 'work',  active:false, complete:false  },
+  { id: 4, name: 'workout',  active:false, complete:false  },
+  { id: 5, name: 'jogg', active:false, complete:false  },
+  { id: 6, name: 'swim', active:false, complete:false  }
 ];
