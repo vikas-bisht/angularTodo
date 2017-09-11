@@ -9,10 +9,11 @@ import { Todos } from './mock-todo';
 import { EditComponent } from './edit.component';
 import { AddComponent } from './add.component';
 import { TodoService } from './todo.service';
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations: [
-    AppComponent, ListComponent,EditComponent,AddComponent
+    AppComponent, ListComponent,EditComponent,AddComponent,StatsComponent
   ],
   imports: [
     BrowserModule,FormsModule,RouterModule.forRoot([
