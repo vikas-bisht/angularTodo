@@ -1,8 +1,14 @@
 <div *ngIf="stats" >
-	  Todo: <span class="badge">{{stats.todo}}</span>
+	<button [class]="filterName === todo" (click)="Filter('todo')">
+	  Todo <span class="badge">{{stats.todo}}</span>
+	</button>
 
-	  Done: <span class="badge">{{stats.done}}</span>
+	<button [class]="filterName ===done" (click)="Filter('done')" >
+	  Done <span class="badge">{{stats.done}}</span>
+	</button>
 
-	  All:<span class="badge">{{stats.todo + stats.done}}</span>
+	<button [class]="filterName === all" (click)="Filter('all')">
+	  All <span class="badge">{{stats.todo + stats.done}}</span>
+	</button>
 </div>
 <br/>

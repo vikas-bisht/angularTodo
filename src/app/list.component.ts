@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges} from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import _ from 'lodash';
@@ -12,25 +12,26 @@ import { StatsComponent } from './stats/stats.component';
 @Component({
   selector: 'list',
   templateUrl: './list.component.html',
-  // directives: [ StatsComponent ]
 })
 
 export class ListComponent implements OnInit, OnChanges{
   todos: Todo[];
-//  private log: string='';
+  showTodos: Todo[];
+  public filterType : string;
+  public filterName: string='';
+  selectedFilter: string = '';
   selectedTodo: Todo;
   constructor(private todoservice:TodoService, private router:Router){}
-
-//  private logCheckbox(element:HTMLInputElement): void{
-//    this.log += `Checkbox ${element.value} was ${element.checked?'':'un'}checked\n`
-//  }
 
   edit(todo: Todo): void{
     this.selectedTodo = todo;
     this.router.navigate(['/edit',this.selectedTodo.id]);
   }
   getTodos():void{
-    this.todoservice.getTodos().then(todos=>this.todos=todos);
+    this.todoservice.getTodos().then(todos=>{
+      this.todos=todos;
+      this.showTodos = todos;
+    });
   }
 
   add():void{
@@ -40,14 +41,42 @@ export class ListComponent implements OnInit, OnChanges{
     this.getTodos();
   }
   markTodo($event:any,mtodo:Todo){
-    this.todos = _.map(this.todos,(todo) => {
+    this.showTodos = _.map(this.todos,(todo) => {
       if(todo.id === mtodo.id){
           todo.complete = !todo.complete;
-        //  console.log(todo);
         }
       return todo;
     });
+    this.todos = this.showTodos;
   }
   ngOnChanges(changes){
   }
+  updateFilter(filters){
+      this.filterType = filters;
+      if(filters == 'done') {
+        this.showTodos = _.filter(this.todos, {'complete': true});
+      }
+      else if(filters=='todo'){
+        this.showTodos = _.filter(this.todos, {'complete': false});
+      }
+      else if(filters=='all'){
+        this.showTodos = _.filter(this.todos);
+      }
+  }
+  showfilter(todo:Todo){
+     if(this.filterType === 'all'){
+
+        return false;
+     }else if(this.filterType === 'done'){
+
+         if(todo.complete){
+            return true;
+         }
+     }else if(this.filterType === 'todo'){
+         if(!todo.complete){
+             return true;
+         }
+     }
+     return false;
+   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
 import _ from 'lodash';
 import { Stats } from './stats';
 
@@ -11,7 +11,9 @@ import { Todo } from './../todo';
 
 export class StatsComponent implements OnInit, OnChanges{
   @Input() todos: Todo[]=[];
+  @Output() filterChange = new EventEmitter();
   stats={} ;
+  filtertype: Number=0;
   ngOnInit(){
     this.updateStats(this.todos);
   }
@@ -32,5 +34,11 @@ export class StatsComponent implements OnInit, OnChanges{
     })
     this.stats['done']=done;
     this.stats['todo']=left;
+    }
+    Filter(filter_type){
+      this.filtertype = filter_type;
+      this.filterChange.emit(this.filtertype);
+  //  console.log(this.filterChange.emit(this.filtertype));
+
     }
 }
