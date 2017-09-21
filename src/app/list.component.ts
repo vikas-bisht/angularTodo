@@ -14,26 +14,26 @@ import { StatsComponent } from './stats/stats.component';
 })
 
 export class ListComponent implements OnInit, OnChanges {
-  public todos: Todo[] = [];
+  todos: Todo[] = [];
   showTodos: Todo[] = [];
-  public filterType: string;
-  public filterName: string = '';
+  filterType: string;
+  filterName: string = '';
   selectedFilter: string = '';
   selectedTodo: Todo;
-  constructor(private todoservice: TodoService, private router: Router) { }
+  constructor(private _todoservice: TodoService, private _router: Router) { }
 
   edit(todo: Todo): void {
     this.selectedTodo = todo;
-    this.router.navigate(['/edit', this.selectedTodo.id]);
+    this._router.navigate(['/edit', this.selectedTodo.id]);
   }
 
 
   add(): void {
-    this.router.navigate(['/add']);
+    this._router.navigate(['/add']);
   }
   ngOnInit() {
     //this.getTodos();
-    this.todoservice.getTodos()
+    this._todoservice.getTodos()
       .subscribe((todos) => {
         this.todos = todos
         this.showTodos = todos;

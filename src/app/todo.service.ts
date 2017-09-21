@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './todo';
-//import { Todos } from './mock-todo';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
@@ -8,13 +7,14 @@ import _ from 'lodash';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
+import { constant } from './constant';
 @Injectable()
 
 export class TodoService {
-  public _url: string = "http://localhost/angular1/src/app/todo.json";
+  _url: string = constant.url;
   serviceData: any;
   constructor(private _http: Http) { }
-  public todos: Todo[] = [];
+  todos: Todo[] = [];
   todo: Todo;
   getTodos(): Observable<Todo[]> {
 
@@ -39,7 +39,7 @@ export class TodoService {
     return Observable.throw(errMsg);
   }
 
-  addTodo(todo:Todo) {
+  addTodo(todo) {
     this.serviceData.push(todo);
   }
 }

@@ -6,7 +6,6 @@ import 'rxjs/add/operator/switchMap';
 
 import { TodoService } from './todo.service';
 import { Todo } from './todo';
-//import { Todos } from './mock-todo';
 
 @Component({
   selector: 'edit',
