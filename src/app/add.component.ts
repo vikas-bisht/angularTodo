@@ -16,7 +16,7 @@ import { Todo } from './todo';
 export class AddComponent {
   constructor(private todoservice: TodoService, private location: Location) { }
   todo: Todo[] = [];
-  add(todo): void {
+  add(todo) {
     todo.id = _.random(0, 500);
     this.todoservice.addTodo(todo);
     this.location.back();
