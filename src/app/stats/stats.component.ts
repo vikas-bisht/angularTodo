@@ -3,7 +3,6 @@ import _ from 'lodash';
 import { Stats } from './stats';
 
 import { Todo } from './../todo';
-import { Todos } from './../mock-todo'
 
 @Component({
   selector: 'stats' ,

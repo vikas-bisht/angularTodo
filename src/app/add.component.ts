@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import * as _ from 'lodash';
 import { Location } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 import { TodoService } from './todo.service'
@@ -18,6 +19,7 @@ export class AddComponent {
   todo: Todo[] = [];
   add(todo) {
     todo.id = _.random(0, 500);
+    todo.complete= false;
     this.todoservice.addTodo(todo);
     this.location.back();
   }
