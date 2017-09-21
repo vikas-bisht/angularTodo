@@ -1,19 +1,45 @@
-import { Injectable } from  '@angular/core';
+import { Injectable } from '@angular/core';
 import { Todo } from './todo';
-import { Todos } from './mock-todo';
-
+//import { Todos } from './mock-todo';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
+import _ from 'lodash';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
 @Injectable()
 
-export class TodoService{
-  todos:Todo[]= Todos;
-  getTodos(): Promise<Todo[]>{
-    return Promise.resolve(Todos);
+export class TodoService {
+  public _url: string = "http://localhost/angular1/src/app/todo.json";
+  serviceData: any;
+  constructor(private _http: Http) { }
+  public todos: Todo[] = [];
+  todo: Todo;
+  getTodos(): Observable<Todo[]> {
+
+    if (this.serviceData && this.serviceData.length > 0) {
+      return Observable.of(this.serviceData);
+    } else {
+      return this._http.get(this._url)
+        .map((res) => {
+          this.serviceData = res.json() || {};
+          console.log(this.serviceData)
+          return res.json();
+        })
+        .catch(this.handleError);
+    }
   }
-  getTodo(id: number): Promise<Todo>{
+  getTodo(id: number): Observable<Todo> {
     return this.getTodos()
-    .then(todo => todo.find(todo=> todo.id===id));
+      .map(todos => todos.find(todo => todo.id == id));
   }
-  addTodo(value:Todo){
-    this.todos.push(value);
+  handleError(error: any) {
+    let errMsg = error.message || 'Server error';
+    return Observable.throw(errMsg);
+  }
+
+  addTodo(todo:Todo) {
+    this.serviceData.push(todo);
   }
 }
