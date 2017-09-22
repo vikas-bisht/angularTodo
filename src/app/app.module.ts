@@ -2,11 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { HttpModule } from '@angular/http';
+
 
 import { AppComponent } from './app.component';
 import { ListComponent } from './list.component';
-import { Todos } from './mock-todo';
 import { EditComponent } from './edit.component';
 import { AddComponent } from './add.component';
 import { TodoService } from './todo.service';
@@ -17,7 +18,7 @@ import { StatsComponent } from './stats/stats.component';
     AppComponent, ListComponent,EditComponent,AddComponent,StatsComponent
   ],
   imports: [
-    BrowserModule,FormsModule,RouterModule.forRoot([
+    BrowserModule,FormsModule, HttpModule,RouterModule.forRoot([
       {path:'',redirectTo:'list',pathMatch:'full'},
       {path:'list', component: ListComponent },
       {path:'edit/:id', component: EditComponent },
