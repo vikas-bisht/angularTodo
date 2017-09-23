@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, Output,OnDestroy, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, OnDestroy, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import _ from 'lodash';
@@ -32,7 +32,6 @@ export class ListComponent implements OnInit, OnChanges {
     this._router.navigate(['/add']);
   }
   ngOnInit() {
-    //this.getTodos();
     this._todoservice.getTodos()
       .subscribe((todos) => {
         this.todos = todos
