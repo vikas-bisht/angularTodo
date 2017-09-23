@@ -11,12 +11,13 @@ import { Todo } from './todo';
 
 @Component({
   selector: 'add',
-  templateUrl: './add.component.html'
+  templateUrl: './add.component.html',
+  styleUrls: ['./app.component.css']
 })
 
 export class AddComponent {
   constructor(private todoservice: TodoService, private location: Location) { }
-  todo: Todo[] = [];
+  todo: Todo[]=[] ;
   add(todo) {
     todo.id = _.random(0, 500);
     todo.complete= false;

@@ -1,0 +1,19 @@
+<form #editForm="ngForm">
+  <div class="form-group" *ngIf="todo">
+    <h2>{{todo.name}} details!</h2>
+    <div>
+      <label>id: </label>{{todo.id}}
+    </div>
+    <div>
+      <label>name: </label>
+      <input [(ngModel)]="todo.name" class="form-control" placeholder="name" name="name" #name="ngModel" required pattern="[a-zA-Z]+" minlength="3"/>
+    </div>
+    <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+      <div *ngIf="name.errors.required">Name is required</div>
+      <div *ngIf="name.errors.pattern">Numeric value not allowed</div>
+      <div *ngIf="name.errors.minlength">too short</div>
+    </div>
+    <div><button (click)="goBack()" class="btn btn-default" [disabled]="!editForm.form.valid">Save</button>
+    </div>
+  </div>
+</form>

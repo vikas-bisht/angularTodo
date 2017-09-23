@@ -11,6 +11,7 @@ import { StatsComponent } from './stats/stats.component';
 @Component({
   selector: 'list',
   templateUrl: './list.component.html',
+  styleUrls: ['./app.component.css']
 })
 
 export class ListComponent implements OnInit, OnChanges {

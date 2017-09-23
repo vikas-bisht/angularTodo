@@ -3,10 +3,10 @@
     <label>name: </label>
     <input [(ngModel)]="todo.name" class="form-control" placeholder="name" name="name" #name="ngModel" required pattern="[a-zA-Z]+" minlength="3" />
   </div>
-  <div *ngIf="name.valid || name.pristine" class="alert alert-danger">
-    <div [hidden]="!name.hasError('required')">Name is required</div>
-    <div [hidden]="!name.hasError('pattern')">Numeric value not allowed</div>
-    <div [hidden]="!name.hasError('minlength')">too short</div>
+  <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+    <div *ngIf="name.errors.required">Name is required</div>
+    <div *ngIf="name.errors.pattern">Numeric value not allowed</div>
+    <div *ngIf="name.errors.minlength">too short</div>
   </div>
   <div><button (click)="add(todo)" class="btn btn-default" [disabled]="!addForm.form.valid">Save</button>
   </div>

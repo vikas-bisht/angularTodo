@@ -2,28 +2,17 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
+import { FormsModule } from '@angular/forms';
 
 
 import { TodoService } from './todo.service';
 import { Todo } from './todo';
 
+
 @Component({
   selector: 'edit',
-  template: `
-    <div *ngIf="todo">
-      <h2>{{todo.name}} details!</h2>
-      <div>
-        <label>id: </label>{{todo.id}}
-      </div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="todo.name" placeholder="name"/>
-      </div>
-      <div><button (click)="goBack()">Save</button>
-      </div>
-    </div>
-
-  `
+  templateUrl: './edit.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class EditComponent implements OnInit {
 
