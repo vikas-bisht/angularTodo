@@ -12,10 +12,11 @@ import { EditComponent } from './edit.component';
 import { AddComponent } from './add.component';
 import { TodoService } from './todo.service';
 import { StatsComponent } from './stats/stats.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent, ListComponent,EditComponent,AddComponent,StatsComponent
+    AppComponent, ListComponent,EditComponent,AddComponent,StatsComponent,FilterPipe
   ],
   imports: [
     BrowserModule,FormsModule, HttpModule,RouterModule.forRoot([
