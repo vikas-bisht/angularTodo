@@ -7,6 +7,7 @@ import { TodoService } from './todo.service'
 import { Todo } from './todo';
 import { AddComponent } from './add.component';
 import { StatsComponent } from './stats/stats.component';
+import { FilterPipe } from './filter.pipe';
 
 @Component({
   selector: 'list',
@@ -21,6 +22,7 @@ export class ListComponent implements OnInit, OnChanges {
   filterName: string = '';
   selectedFilter: string = '';
   selectedTodo: Todo;
+  filter = null;
   constructor(private _todoservice: TodoService, private _router: Router) { }
 
   edit(todo: Todo): void {
