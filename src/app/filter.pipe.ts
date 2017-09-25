@@ -1,6 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Todo } from './todo';
-import { ListComponent } from './list.component';
 
 @Pipe({
   name: "sort"
@@ -8,19 +6,19 @@ import { ListComponent } from './list.component';
 export class FilterPipe implements PipeTransform {
   transform(array: Array<any>, args: string): Array<string> {
     {
-      array.sort((a: any, b: any) => {
+      array.sort((firsttodo: any, secondtodo: any) => {
         if (args) {
-          if (a.name < b.name) {
+          if (firsttodo.name < secondtodo.name) {
             return -1;
-          } else if (a.name > b.name) {
+          } else if (firsttodo.name > secondtodo.name) {
             return 1;
           } else {
             return 0;
           }
         } else {
-          if (a.name > b.name) {
+          if (firsttodo.name > secondtodo.name) {
             return -1;
-          } else if (a.name < b.name) {
+          } else if (firsttodo.name < secondtodo.name) {
             return 1;
           } else {
             return 0;
