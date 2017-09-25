@@ -39,7 +39,7 @@ export class TodoService {
     return Observable.throw(errMsg);
   }
 
-  addTodo(todo) {
-    this.serviceData.push(todo);
+  addTodo(value) {
+    this.serviceData.push(value);
   }
 }

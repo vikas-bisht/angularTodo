@@ -1,3 +1,3 @@
 export const  constant = {
-  url: 'http://localhost/angular1/src/app/todo.json'
+  url: 'assets/todo.json'
 }
